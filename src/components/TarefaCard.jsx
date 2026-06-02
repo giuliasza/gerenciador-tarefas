@@ -1,14 +1,38 @@
-import react from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function TarefaCard ({titulo, feita}){
+// Agora o Card recebe a 'cor' diretamente
+export default function TarefaCard ({ titulo, feita, onClick, urgencia, categoria, cor }){
 
     return(
-        <View style={styles.card}>
-            <Text style={[styles.titulo, feita ? styles.textoRiscado : null]}>
-                {titulo}
-            </Text>
+        // A borda esquerda usa a cor escolhida (se não tiver, usa o roxinho padrão)
+        <View style={[styles.card, { borderLeftColor: cor || '#e7c6ff' }]}>
+
+            <View style={styles.infoContainer}>
+                <Text style={[styles.titulo, feita ? styles.textoRiscado : null]}>
+                    {titulo}
+                </Text>
+
+                {/* Container para alinhar as tags (urgência e categoria) lado a lado */}
+                <View style={styles.tagsContainer}>
+                    {urgencia === 'alta' && (
+                        <Text style={[styles.urgenciaTag, styles.urgenciaAlta]}>🚩 Alta</Text>
+                    )}
+                    {urgencia === 'media' && (
+                        <Text style={[styles.urgenciaTag, styles.urgenciaMedia]}>🍊 Média</Text>
+                    )}
+
+                    {/* Se tiver uma categoria (tag) escrita, exibe ela aqui com a cor escolhida */}
+                    {categoria ? (
+                        <View style={[styles.categoriaBadge, { backgroundColor: cor || '#e7c6ff' }]}>
+                            <Text style={styles.categoriaTexto}>{categoria}</Text>
+                        </View>
+                    ) : null}
+                </View>
+            </View>
+
             <TouchableOpacity
+                onPress={onClick}
                 style={[styles.checkbox, feita ? styles.checkboxMarcado : null]}
             />
         </View>
@@ -25,9 +49,46 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 8,
-    borderLeftWidth: 5,
-    borderLeftColor: '#ffafcc',
-    elevation: 2, //sombra
+    borderLeftWidth: 6,
+    elevation: 2,
+  },
+  infoContainer: {
+    flex: 1,
+  },
+  titulo: {
+    fontSize: 16,
+    color: '#240046',
+    fontWeight: '500',
+  },
+  textoRiscado: {
+    textDecorationLine: 'line-through',
+    color: '#a0a0a0',
+  },
+  tagsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 6,
+    gap: 10, // Dá um espacinho entre a urgência e a tag
+  },
+  urgenciaTag: {
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  urgenciaAlta: {
+    color: '#ff4d4d',
+  },
+  urgenciaMedia: {
+    color: '#ff9900',
+  },
+  categoriaBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 12,
+  },
+  categoriaTexto: {
+    fontSize: 11,
+    color: '#333',
+    fontWeight: 'bold',
   },
   checkbox: {
     width: 24,
@@ -35,17 +96,9 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     borderWidth: 2,
     borderColor: '#e7c6ff',
-    marginRight: 12,
+    marginLeft: 12,
   },
   checkboxMarcado: {
     backgroundColor: '#c8b6ff',
   },
-  titulo: {
-    fontSize: 16,
-    color: '#240046',
-  },
-  textoRiscado: {
-    textDecorationLine: 'line-through', //risca o texto.
-    color: '#240046',
-  }
 });

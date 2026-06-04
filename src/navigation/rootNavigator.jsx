@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import Home from '../screens/Home';
-import Tarefas from '../screens/TaskList'; 
+import Tarefas from '../screens/TaskList';
 import Perfil from '../screens/Perfil';
 
 const Tab = createBottomTabNavigator();
@@ -15,13 +15,14 @@ export default function Routes() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarActiveTintColor: '#ca7df9',
-        tabBarInactiveTintColor: '#ccc',
+        tabBarInactiveTintColor: '#3c096c',
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopWidth: 0,
-          elevation: 10,
-          height: 70,
+          elevation: 20,
+          height: 100,
           paddingBottom: 5,
+          paddingTop: 5
         }
       }}
     >
@@ -31,7 +32,6 @@ export default function Routes() {
         options={{ tabBarIcon: ({ color, size, focused }) => (<Ionicons name={focused ? 'grid' : 'grid-outline'} size={size + 4} color={color} />) }}
       />
 
-      {/* A nossa tela antiga agora é a aba de Tarefas! */}
       <Tab.Screen
         name="Tarefas"
         component={Tarefas}

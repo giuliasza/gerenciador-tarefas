@@ -21,7 +21,7 @@ export default function Home({ navigation }) {
             <View style={styles.dashboardContainer}>
                 {/* O nosso Gráfico de Pizza virá para cá depois! */}
                 <View style={styles.cardResumo}>
-                    <Text style={styles.cardTitulo}>Progresso de Hoje</Text>
+                    <Text style={styles.cardTitulo}>Progresso de hoje:</Text>
                     <Text style={styles.cardNumero}>3/5 Tarefas</Text>
                 </View>
 
@@ -40,12 +40,12 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f5f5f5' },
     header: { paddingTop: 60, paddingBottom: 30, paddingHorizontal: 24, backgroundColor: '#ffd6ff', borderBottomRightRadius: 30, borderBottomLeftRadius: 30, elevation: 5 },
-    greeting: { fontSize: 20, color: '#666', fontWeight: '500' },
+    greeting: { fontSize: 20, color: '#3c096c', fontWeight: '500' },
     title: { fontSize: 32, color: '#ca7df9', fontFamily: 'Gooper', marginTop: 5 },
-    subtitle: { fontSize: 16, color: '#8a5a9e', marginTop: 10, fontWeight: '500' },
+    subtitle: { fontSize: 16, color: '#3c096c', marginTop: 10, fontWeight: '500' },
     dashboardContainer: { padding: 24, flex: 1, justifyContent: 'center' },
     cardResumo: { backgroundColor: '#fff', padding: 24, borderRadius: 20, alignItems: 'center', elevation: 2, marginBottom: 30 },
-    cardTitulo: { fontSize: 18, color: '#555', fontWeight: 'bold', marginBottom: 10 },
+    cardTitulo: { fontSize: 18, color: '#3c096c', fontWeight: 'bold', marginBottom: 10 },
     cardNumero: { fontSize: 36, color: '#ca7df9', fontWeight: 'bold' },
     botaoPrincipal: { backgroundColor: '#ca7df9', paddingVertical: 18, borderRadius: 15, alignItems: 'center' },
     botaoTexto: { color: '#fff', fontSize: 18, fontWeight: 'bold' }

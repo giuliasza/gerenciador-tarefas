@@ -1,11 +1,9 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-// Agora o Card recebe a 'cor' diretamente
-export default function TarefaCard ({ titulo, feita, onClick, urgencia, categoria, cor }){
+export default function TarefaCard({ titulo, feita, onClick, urgencia, tags, cor }) {
 
-    return(
-        // A borda esquerda usa a cor escolhida (se não tiver, usa o roxinho padrão)
+    return (
         <View style={[styles.card, { borderLeftColor: cor || '#e7c6ff' }]}>
 
             <View style={styles.infoContainer}>
@@ -13,7 +11,6 @@ export default function TarefaCard ({ titulo, feita, onClick, urgencia, categori
                     {titulo}
                 </Text>
 
-                {/* Container para alinhar as tags (urgência e categoria) lado a lado */}
                 <View style={styles.tagsContainer}>
                     {urgencia === 'alta' && (
                         <Text style={[styles.urgenciaTag, styles.urgenciaAlta]}>🚩 Alta</Text>
@@ -22,12 +19,11 @@ export default function TarefaCard ({ titulo, feita, onClick, urgencia, categori
                         <Text style={[styles.urgenciaTag, styles.urgenciaMedia]}>🍊 Média</Text>
                     )}
 
-                    {/* Se tiver uma categoria (tag) escrita, exibe ela aqui com a cor escolhida */}
-                    {categoria ? (
-                        <View style={[styles.categoriaBadge, { backgroundColor: cor || '#e7c6ff' }]}>
-                            <Text style={styles.categoriaTexto}>{categoria}</Text>
+                    {tags && tags.map((tag, index) => (
+                        <View key={index} style={[styles.categoriaBadge, { backgroundColor: cor || '#e7c6ff' }]}>
+                            <Text style={styles.categoriaTexto}>{tag}</Text>
                         </View>
-                    ) : null}
+                    ))}
                 </View>
             </View>
 
@@ -67,8 +63,9 @@ const styles = StyleSheet.create({
   tagsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 6,
-    gap: 10, // Dá um espacinho entre a urgência e a tag
+    marginTop: 8,
+    gap: 8,
+    flexWrap: 'wrap', // A mágica que impede que as tags quebrem a tela
   },
   urgenciaTag: {
     fontSize: 12,
@@ -81,8 +78,8 @@ const styles = StyleSheet.create({
     color: '#ff9900',
   },
   categoriaBadge: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
     borderRadius: 12,
   },
   categoriaTexto: {

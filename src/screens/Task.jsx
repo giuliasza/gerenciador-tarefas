@@ -8,7 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useTarefaStore } from '../store/useTarefaStore';
 
 export default function Task({ route, navigation }) {
-    // 🛡️ O ESCUDO: Se a tela anterior esquecer de mandar o ID, o app não quebra!
+    
     const { tarefaId } = route.params || {};
 
     const { tarefas, atualizarTarefa, deletarTarefa } = useTarefaStore();
@@ -19,11 +19,11 @@ export default function Task({ route, navigation }) {
     const [novaTagTexto, setNovaTagTexto] = useState("");
     const [novoItemChecklist, setNovoItemChecklist] = useState("");
 
-    // Estados do seletor de cores customizado
+
     const [modalCorVisivel, setModalCorVisivel] = useState(false);
     const [corTemporaria, setCorTemporaria] = useState("");
 
-    // Se a tarefa não existir ou o ID não for enviado, volta pra tela anterior de forma segura
+
     useEffect(() => {
         if (!tarefaId || !tarefaOriginal) {
             Alert.alert("Aviso", "Não foi possível carregar esta tarefa.");
@@ -173,7 +173,7 @@ export default function Task({ route, navigation }) {
                     ))}
                 </View>
 
-                {/* Botões limpos sem emoji */}
+
                 <View style={styles.footerBtns}>
                     <TouchableOpacity style={styles.btnDeletar} onPress={deletar}>
                         <Text style={styles.btnDeletarText}>Deletar</Text>
@@ -185,7 +185,7 @@ export default function Task({ route, navigation }) {
 
             </ScrollView>
 
-            {/* Modal de Cores */}
+
             <Modal visible={modalCorVisivel} transparent animationType="fade">
                 <Pressable style={styles.modalCorOverlay} onPress={() => setModalCorVisivel(false)}>
                     <View style={styles.modalCorContent} onStartShouldSetResponder={() => true}>

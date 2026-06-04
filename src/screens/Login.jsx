@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
             return;
         }
 
-        // Tenta entrar com os dados digitados
+
         const acessoPermitido = fazerLogin(email.toLowerCase(), senha);
 
         if (!acessoPermitido) {
@@ -40,7 +40,7 @@ export default function Login({ navigation }) {
                     <TextInput style={styles.input} placeholder="Seu e-mail" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
                     <TextInput style={styles.input} placeholder="Sua senha" value={senha} onChangeText={setSenha} secureTextEntry />
 
-                    {/* Botão de login que invoca o porteiro */}
+
                     <TouchableOpacity style={styles.btnAcessar} onPress={handleLogin}>
                         <Text style={styles.btnAcessarText}>Acessar Minhas Tarefas</Text>
                     </TouchableOpacity>
@@ -54,7 +54,7 @@ export default function Login({ navigation }) {
     );
 }
 
-// O StyleSheet continua exatamente igual
+
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f9f0ff' },
     content: { flex: 1, justifyContent: 'center', padding: 24 },

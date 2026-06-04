@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 import { PieChart } from "react-native-chart-kit";
 import { Ionicons } from '@expo/vector-icons';
 
-// 🚀 Conectando ao nosso cérebro global
 import { useTarefaStore } from '../store/useTarefaStore';
 
 const screenWidth = Dimensions.get("window").width;
@@ -17,10 +16,10 @@ export default function Home({ navigation }) {
 
     const [saudacao, setSaudacao] = useState("Olá");
 
-    // Puxando as tarefas reais do Zustand!
+
     const { tarefas, alternarStatusFeita, nomeUsuario } = useTarefaStore();
 
-    // Lógica de Saudação por Horário
+
     useEffect(() => {
         const hora = new Date().getHours();
         if (hora < 12) setSaudacao("Bom dia");
@@ -33,7 +32,6 @@ export default function Home({ navigation }) {
     const totalFeitas = tarefas.filter(t => t.feita).length;
     const totalPendentes = tarefas.length - totalFeitas;
 
-    // Filtra para o carrossel apenas tarefas ALTA prioridade que estão pendentes
     const tarefasFocoHoje = tarefas.filter(t => t.urgencia === 'alta' && !t.feita);
     const totalUrgentes = tarefasFocoHoje.length;
 
@@ -62,7 +60,6 @@ export default function Home({ navigation }) {
 
                 <View style={styles.dashboardContainer}>
 
-                    {/* 2. CARDS DE VISÃO RÁPIDA (Side by Side Dinâmicos) */}
                     <View style={styles.quickStatsRow}>
                         <View style={[styles.statCard, { backgroundColor: '#ffd6a5' }]}>
                             <View style={styles.iconCircle}><Text>🔥</Text></View>
@@ -76,7 +73,7 @@ export default function Home({ navigation }) {
                         </View>
                     </View>
 
-                    {/* 3. O GRÁFICO DE PRODUTIVIDADE REAL */}
+
                     <Text style={styles.sectionTitle}>Sua Produtividade</Text>
                     <View style={styles.chartCard}>
                         {tarefas.length > 0 ? (
@@ -95,7 +92,7 @@ export default function Home({ navigation }) {
                         )}
                     </View>
 
-                    {/* 4. CARROSSEL DE FOCO HORIZONTAL DINÂMICO */}
+
                     <View style={styles.focoHeader}>
                         <Text style={styles.sectionTitle}>Foco de Hoje</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Tarefas')}>
@@ -113,7 +110,7 @@ export default function Home({ navigation }) {
                                 >
                                     <View style={styles.focoCardTopo}>
                                         <Text style={styles.focoTag}>🚩 Prioridade</Text>
-                                        {/* 🚀 O Checkbox na Home! */}
+
                                         <TouchableOpacity
                                             style={[styles.miniCheckbox, tarefa.feita && styles.miniCheckboxMarcado]}
                                             onPress={() => alternarStatusFeita(tarefa.id)}
@@ -127,16 +124,16 @@ export default function Home({ navigation }) {
                                     </Text>
                                     <Ionicons name="arrow-forward-circle" size={24} color={tarefa.cor} style={styles.focoIcone} />
                                 </TouchableOpacity>
-                            )) /* <-- 1. Fechamos o map corretamente com dois parênteses */
+                            ))
                         ) : (
-                            /* <-- 2. O ":" do ternário! O que mostrar se não houver tarefas urgentes */
+
                             <View style={styles.focoVazioCard}>
                                 <Text style={styles.focoVazioTexto}>Nenhuma tarefa urgente pendente! 🎉</Text>
                             </View>
                         )}
-                        {/* <-- 3. Fechamos a chave do JavaScript aqui */}
 
-                        {/* Botão extra de adicionar nova tarefa para manter o design bonito */}
+
+
                         <TouchableOpacity style={styles.focoAddCard} onPress={() => navigation.navigate('Tarefas')}>
                             <Ionicons name="add-circle" size={40} color="#ca7df9" />
                             <Text style={styles.focoAddText}>Nova</Text>

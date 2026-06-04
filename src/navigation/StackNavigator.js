@@ -1,7 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// Ajuste o caminho das importações dependendo de onde as telas ficaram salvas!
 import TaskList from '../screens/TaskList';
 import Task from '../screens/Task';
 import Login from '../screens/Login';

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Home from '../screens/Home';
 import Perfil from '../screens/Perfil';
-import { TaskStack } from './StackNavigator'; // Traz a pilha de tarefas para dentro de uma aba
+import { TaskStack } from './StackNavigator'; 
 
 const Tab = createBottomTabNavigator();
 

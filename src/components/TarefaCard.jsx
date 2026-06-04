@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
     gap: 8,
-    flexWrap: 'wrap', // A mágica que impede que as tags quebrem a tela
+    flexWrap: 'wrap', 
   },
   urgenciaTag: {
     fontSize: 12,

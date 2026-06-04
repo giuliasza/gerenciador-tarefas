@@ -15,7 +15,7 @@ export default function Perfil() {
     const [notificacoes, setNotificacoes] = useState(false);
     const [modoEscuro, setModoEscuro] = useState(false);
 
-    // 🚀 A FUNÇÃO DE SIMULAÇÃO (Sem usar o agendador nativo que quebra o Expo Go 53)
+
     function ativarNotificacoes(valor) {
         setNotificacoes(valor);
 
@@ -72,19 +72,6 @@ export default function Perfil() {
                             onValueChange={ativarNotificacoes}
                             trackColor={{ false: "#eee", true: "#e7c6ff" }}
                             thumbColor={notificacoes ? "#ca7df9" : "#ccc"}
-                        />
-                    </View>
-
-                    <View style={styles.settingRow}>
-                        <View style={styles.settingLeft}>
-                            <Ionicons name="moon" size={22} color="#ca7df9" />
-                            <Text style={styles.settingText}>Modo Escuro (Fictício)</Text>
-                        </View>
-                        <Switch
-                            value={modoEscuro}
-                            onValueChange={setModoEscuro}
-                            trackColor={{ false: "#eee", true: "#e7c6ff" }}
-                            thumbColor={modoEscuro ? "#ca7df9" : "#ccc"}
                         />
                     </View>
                 </View>

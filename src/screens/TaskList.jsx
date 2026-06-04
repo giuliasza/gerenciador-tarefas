@@ -5,7 +5,7 @@ import {
 import { useFonts } from "expo-font";
 import { PieChart } from "react-native-chart-kit";
 
-// Importando o cérebro global e o card
+
 import { useTarefaStore } from "../store/useTarefaStore";
 import TarefaCard from "../components/TarefaCard";
 
@@ -18,7 +18,6 @@ export default function TaskList({ navigation }) {
         'Gooper': require('../../assets/fonts/Gooper.otf'),
     });
 
-    // Puxamos as tarefas reais do Zustand
     const { tarefas, adicionarTarefa, alternarStatusFeita } = useTarefaStore();
 
     const nomeUsuario = "Maria Giulia";
@@ -75,6 +74,23 @@ export default function TaskList({ navigation }) {
         </View>
     );
 
+    <View style={styles.carrosselVerticalContainer}>
+    <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
+        {tarefas.map(item => (
+            <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Task', { tarefaId: item.id })} activeOpacity={0.7}>
+                <TarefaCard
+                    titulo={item.titulo}
+                    feita={item.feita}
+                    urgencia={item.urgencia}
+                    tags={item.tags}
+                    cor={item.cor}
+                    onClick={() => alternarStatusFeita(item.id)}
+                />
+            </TouchableOpacity>
+        ))}
+    </ScrollView>
+</View>
+
     const rodapeTela = (
         <View style={styles.footerContainer}>
             <Text style={styles.graficoTitulo}>Seu Progresso</Text>
@@ -87,12 +103,12 @@ export default function TaskList({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-            <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 30 }}>
+            <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 120 }}>
                 {cabecalhoTela}
 
                 <View style={styles.carrosselContainer}>
                     {tarefas.map(item => (
-                        // AQUI NAVEGAMOS PARA A TELA 'Task' PASSANDO O ID CORRETO!
+    
                         <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Task', { tarefaId: item.id })} activeOpacity={0.7}>
                             <TarefaCard
                                 titulo={item.titulo}
@@ -127,5 +143,10 @@ const styles = StyleSheet.create({
   graficoTitulo: { fontSize: 18, fontWeight: 'bold', color: '#333', marginBottom: 10 },
   semTarefasText: { color: '#999', marginVertical: 30, fontStyle: 'italic' },
   creditosContainer: { marginTop: 40, marginBottom: 30, paddingTop: 20, borderTopWidth: 1, borderColor: '#e0e0e0', width: '80%', alignItems: 'center' },
-  creditos: { color: '#aaa', fontSize: 14, fontWeight: '500' }
+  creditos: { color: '#aaa', fontSize: 14, fontWeight: '500' },
+  carrosselVerticalContainer: {
+  maxHeight: 320,
+  marginVertical: 5,
+  paddingHorizontal: 4,
+}
 });

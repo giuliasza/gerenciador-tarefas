@@ -12,7 +12,7 @@ export default function Cadastro({ navigation }) {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    // 🚀 Validação de formulário profissional!
+    
     function handleCadastro() {
         if (!nome.trim()) {
             return Alert.alert("Ops!", "Por favor, digite como gostaria de ser chamada(o).");
@@ -24,7 +24,7 @@ export default function Cadastro({ navigation }) {
             return Alert.alert("Senha Fraca", "Sua senha deve ter pelo menos 4 caracteres.");
         }
 
-        // Se passou em todos os testes, cadastra!
+
         cadastrarUsuario(nome, email.toLowerCase(), senha);
     }
 
